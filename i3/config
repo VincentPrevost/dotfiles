@@ -9,15 +9,22 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 #Autostart
+#exec_always ~/scripts/scrtoggle.sh
 exec_always --no-startup-id autotiling
-#exec feh --bg-fill ~/Pictures/Wallpapers/wp2.jpg
+exec --no-startup-id emacs --daemon
+exec --no-startup-id dockd --daemon
+exec feh --bg-fill ~/Pictures/Wallpapers/wp4.jpg
+#exec --no-startup-id picom --experimental-backends
+#exec --no-startup-id picom -CGb --experimental-backends --dbus --no-fading-openclose
 #output "*" bg ~/Pictures/Wallpapers/wp2.jpg fill
-#exec --no-startup-id picom -CGb --experimental-backends --backend glx --dbus --vsync --glx-no-stencil --glx-no-rebind-pixmap --no-fading-openclose
 set $mod Mod4
-
+bindsym $mod+p exec --no-startup-id mesa_glthread=true picom --experimental-backends 
+bindsym $mod+Shift+p exec --no-startup-id killall picom
+set $term alacritty 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:inconsolata 10
+#font pango:IBM Plex Mono 10
+
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -59,8 +66,10 @@ bindsym XF86TouchpadToggle exec /home/vince/scripts/toggletouchpad.sh # toggle t
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
-
+bindsym $mod+Return exec $term
+#start file manager
+bindsym $mod+Shift+f exec pcmanfm
+bindsym $mod+Shift+w exec firefox
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -196,11 +205,15 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
 	position top
-        status_command i3status
+#	status_command echo '{"version":1}[[],'; xtitle -s -f '[{"full_text": "%s"}],'
+	status_command i3status 
 #	mode hide
 #	hidden_state hide
 #	modifier Mod1
 }
 
 #Window configuration
-default_border pixel 1
+default_border none
+#smart_gaps on
+#gaps outer 1
+gaps inner 2
