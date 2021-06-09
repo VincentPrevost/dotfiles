@@ -67,7 +67,7 @@ bindswitch --reload --locked lid:off output $laptop enable
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 input * {
-    xkb_layout "de"
+    xkb_layout "us,de"
     #xkb_options "grp:win_k_toggle"
 }
 
@@ -88,7 +88,7 @@ bindsym XF86AudioPrev exec playerctl previous
 # Basics:
 #
     bindsym $mod+Shift+f exec pcmanfm
-    bindsym $mod+Shift+w exec palemoon
+    bindsym $mod+Shift+w exec chromium
     # Start a terminal
     bindsym $mod+Return exec $term
 
@@ -235,26 +235,11 @@ bar {
     status_command i3status
     #swaybar_command waybar
     # $i3-theme-bar
-    colors {
-	background #504945
-	statusline #d5c4a1
-	separator #3c3836
-	focused_workspace #3c3836 #32302f #fabd2f
-	active_workspace #3c3836 #504945 #d5c4a1
-	inactive_workspace #3c3836 #504945 #d5c4a1
-	urgent_workspace   #7c6f64 #fabd2f #3c3836
 
-   }
-   }
-
+}
 #Style:
 default_border pixel 1
 #gaps inner 2
 #smart_gaps on
 # $i3-theme-window
-# class                 border  backgr. text    indicator
-client.focused          #3c3836 #32302f #fabd2f #fabd2f
-client.focused_inactive #3c3836 #504945 #d5c4a1 #504945
-client.unfocused        #3c3836 #504945 #d5c4a1 #504945
-client.urgent           #7c6f64 #fabd2f #3c3836 #fabd2f
 include /etc/sway/config.d/*
